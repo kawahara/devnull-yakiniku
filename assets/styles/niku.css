@@ -30,8 +30,9 @@ body {
 /* Custom page footer */
 .footer {
   padding-top: 19px;
-  color: #FFDFDF;
+  color: white;
   border-top: 1px solid #e5e5e5;
+  font-size: 20px;
 }
 
 /* Main marketing message and sign up button */
@@ -42,9 +43,10 @@ body {
 .jumbotron .btn {
   padding: 14px 140px;
   font-size: 21px;
+  margin: 2px;
 }
 .text-muted {
-  color: #FFE5E5;
+  color: white;
 }
 strong.role {
   color: white;
@@ -70,4 +72,42 @@ text-align: center;
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+.bt-height {
+  line-height: 0.5;
+}
+
+.btn-a {
+  background-color: hsl(360, 100%, 57%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fe3838", endColorstr="#fe2323");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#fe3838), to(#fe2323));
+  background-image: -moz-linear-gradient(top, #fe3838, #fe2323);
+  background-image: -ms-linear-gradient(top, #fe3838, #fe2323);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fe3838), color-stop(100%, #fe2323));
+  background-image: -webkit-linear-gradient(top, #fe3838, #fe2323);
+  background-image: -o-linear-gradient(top, #fe3838, #fe2323);
+  background-image: linear-gradient(#fe3838, #fe2323);
+  border-color: #fe2323 #fe2323 hsl(360, 100%, 56%);
+  color: white;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.06);
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-b {
+  background-color: hsl(22, 100%, 58%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7d32", endColorstr="#ff7728");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#ff7d32), to(#ff7728));
+  background-image: -moz-linear-gradient(top, #ff7d32, #ff7728);
+  background-image: -ms-linear-gradient(top, #ff7d32, #ff7728);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff7d32), color-stop(100%, #ff7728));
+  background-image: -webkit-linear-gradient(top, #ff7d32, #ff7728);
+  background-image: -o-linear-gradient(top, #ff7d32, #ff7728);
+  background-image: linear-gradient(#ff7d32, #ff7728);
+  border-color: #ff7728 #ff7728 hsl(22, 100%, 57.5%);
+  color: white;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.03);
+  -webkit-font-smoothing: antialiased;
 }
