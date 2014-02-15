@@ -10,9 +10,6 @@
 
 module.exports.bootstrap = function (cb) {
   MindStorms.connect(function() {
-    console.log('hogehoge');
-    MindStorms.motor('a', 500, 10, function() {
-      cb();
-    })
+    cb();
   });
 };
