@@ -9,7 +9,10 @@
  */
 
 module.exports.bootstrap = function (cb) {
+  /*
   MindStorms.connect(function() {
     cb();
   });
+  */
+  cb();
 };
