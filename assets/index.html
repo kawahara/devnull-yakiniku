@@ -5,22 +5,21 @@
     <title>R /dev/null</title>
     <link href="styles/bootstrap.min.css" rel="stylesheet">
     <link href="styles/niku.css" rel="stylesheet">
-    <script src="js/angular.min.js"></script>
   </head>
-  <body>
+  <body ng-app="devnullNiku">
     <div>
       <a href="http://www.idcf.jp/" target="_blank">
         <img src="images/niku_badge.png" alt="niku-badge" id="niku-badge">
       </a>
     </div>
-    <div class="container">
+    <div class="container" ng-controller="nikuCtrl">
       <div class="header">
         <h3 class="text-muted">$ echo 'YAKINIKU' > /dev/null</h3>
       </div>
       <div class="jumbotron">
         <div class="row">
           <div class="col-md-4">
-            <button class="btn btn-lg btn-a" href="#">
+            <button class="btn btn-lg btn-a" href="#" ng-click='control("a", -15)'>
             　した
               <span class="glyphicon glyphicon-arrow-down"></span>
             </button>
@@ -29,7 +28,7 @@
             <strong class="role">N</strong>
           </div>
           <div class="col-md-4">
-            <button class="btn btn-lg btn-a" href="#">
+            <button class="btn btn-lg btn-a" href="#" ng-click='control("a", 15)'>
             　うえ
               <span class="glyphicon glyphicon-arrow-up"></span>
             </button>
@@ -37,7 +36,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <button class="btn btn-lg btn-b" href="#">
+            <button class="btn btn-lg btn-b" href="#" ng-click='control("b", 15)'>
             　した
               <span class="glyphicon glyphicon-arrow-down"></span>
             </button>
@@ -46,7 +45,7 @@
             <strong class="role">I</strong>
           </div>
           <div class="col-md-4">
-            <button class="btn btn-lg btn-b" href="#">
+            <button class="btn btn-lg btn-b" href="#" ng-click="up_i()">
               　うえ
               <span class="glyphicon glyphicon-arrow-up"></span>
             </button>
@@ -54,7 +53,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <button class="btn btn-lg btn-a" href="#">
+            <button class="btn btn-lg btn-a" href="#" ng-click='control("c", -5)'>
               とじる
               <span class="glyphicon glyphicon-remove-circle"></span>
             </button>
@@ -63,7 +62,7 @@
             <strong class="role">K</strong>
           </div>
           <div class="col-md-4">
-            <button class="btn btn-lg btn-a" href="#">
+            <button class="btn btn-lg btn-a" href="#" ng-click='control("c", 5)'>
               ひらく
               <span class="glyphicon glyphicon-fullscreen"></span>
             </button>
@@ -71,8 +70,8 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <button class="btn btn-lg btn-b" href="#">
-            はなす
+            <button class="btn btn-lg btn-b" href="#" ng-click="furikaburu()">
+            せいっ
             <span class="glyphicon glyphicon-resize-full"></span>
             </button>
           </div>
@@ -81,7 +80,7 @@
           </div>
           <div class="col-md-4">
             <button class="btn btn-lg btn-b" href="#">
-              つかむ
+              あべし
               <span class="glyphicon glyphicon-resize-small"></span>
             </button>
           </div>
@@ -91,5 +90,28 @@
         <p>&copy; R /dev/null</p>
       </div>
     </div>
+    <script src="js/angular.min.js"></script>
+    <script>
+      var app = angular.module('devnullNiku', []);
+      app.controller('nikuCtrl', ['$scope', '$http',
+        function($scope, $http) {
+          $scope.up_i = function() {
+            $http.post('/motor/up_i');
+          };
+          $scope.furikaburu = function() {
+            $http.post('/motor/furikaburu');
+          };
+          $scope.control = function(id, power, time) {
+            if (!time) {
+              time = 2000;
+            }
+            $http.post('/motor/' + id, {
+              power: power,
+              time: time
+            });
+          }
+        }
+      ]);
+    </script>
   </body>
 </html>
