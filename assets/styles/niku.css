@@ -86,6 +86,11 @@ text-align: center;
   border: none;
 }
 
+.row {
+margin-left: -45px;
+margin-right: 0px;
+}
+
 .btn-a {
   background-color: hsl(360, 100%, 57%) !important;
   background-repeat: repeat-x;
