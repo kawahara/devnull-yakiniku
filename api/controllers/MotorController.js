@@ -23,6 +23,36 @@ module.exports = {
    */
   _config: {},
 
+  furikaburu: function(req, res) {
+    res.isJson = true;
+
+    MindStorms.motor('a', 3000, 15, function() {
+      MindStorms.motor('b', 3000, -15, function() {
+        MindStorms.motor('c', 5000, -10, function() {
+
+        });
+      });
+    });
+
+    res.statusCode = 202;
+    res.send({
+      status: 202
+    });
+  },
+
+  up_i: function(req, res) {
+    res.isJson = true;
+    MindStorms.motor('c', 2000, -10, function() {
+      MindStorms.motor('b', 2000, -15, function() {
+      });
+    });
+
+    res.statusCode = 202;
+    res.send({
+      status: 202
+    });
+  },
+
   control: function(req, res) {
     res.isJson = true;
 
@@ -63,6 +93,7 @@ module.exports = {
       console.log('process done');
     });
 
+    res.statusCode = 202;
     res.send({
       status: 202
     });

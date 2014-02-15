@@ -9,6 +9,14 @@
  */
 
 module.exports.routes = {
+  'POST /motor/furikaburu' : {
+    'controller' : 'MotorController',
+    'action': 'furikaburu'
+  },
+  'POST /motor/up_i' : {
+    'controller' : 'MotorController',
+    'action': 'up_i'
+  },
   'POST /motor/:id' : {
     'controller' : 'MotorController',
     'action': 'control'
