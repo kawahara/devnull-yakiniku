@@ -78,6 +78,14 @@ text-align: center;
   line-height: 0.5;
 }
 
+#niku-badge {
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  z-index: 100;
+  border: none;
+}
+
 .btn-a {
   background-color: hsl(360, 100%, 57%) !important;
   background-repeat: repeat-x;
