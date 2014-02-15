@@ -3,6 +3,8 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
   background-color: #AA0000;
+  background-image: url("../images/niku.jpg");
+  background-size: cover;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -35,7 +37,7 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   border-bottom: 1px solid #e5e5e5;
-  background-color: #C42929;
+  background-color: rgba(44, 44, 44, 0.8);
 }
 .jumbotron .btn {
   padding: 14px 140px;
