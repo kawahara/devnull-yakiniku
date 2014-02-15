@@ -38,11 +38,19 @@ body {
   background-color: #C42929;
 }
 .jumbotron .btn {
-  padding: 14px 24px;
+  padding: 14px 140px;
   font-size: 21px;
 }
 .text-muted {
   color: #FFE5E5;
+}
+strong.role {
+  color: white;
+  font-size: 40px;
+}
+.col-md-4 {
+width: 33.33333333%;
+text-align: center;
 }
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
