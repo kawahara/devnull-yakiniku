@@ -2,7 +2,7 @@
  * MotorController
  *
  * @module      :: Controller
- * @description	:: A set of functions called `actions`.
+ * @description  :: A set of functions called `actions`.
  *
  *                 Actions contain code telling Sails how to respond to a certain type of request.
  *                 (i.e. do stuff, then send some JSON, show an HTML page, or redirect to another URL)
@@ -16,19 +16,19 @@
  */
 
 module.exports = {
-    
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to MotorController)
    */
   _config: {},
 
-  furikaburu: function(req, res) {
+  furikaburu: function (req, res) {
     res.isJson = true;
 
-    MindStorms.motor('a', 3000, 15, function() {
-      MindStorms.motor('b', 3000, -15, function() {
-        MindStorms.motor('c', 5000, -10, function() {
+    MindStorms.motor('a', 5000, 25, function () {
+      MindStorms.motor('b', 5000, -20, function () {
+        MindStorms.motor('c', 10000, -10, function () {
 
         });
       });
@@ -40,10 +40,10 @@ module.exports = {
     });
   },
 
-  up_i: function(req, res) {
+  up_i: function (req, res) {
     res.isJson = true;
-    MindStorms.motor('c', 2000, -10, function() {
-      MindStorms.motor('b', 2000, -15, function() {
+    MindStorms.motor('c', 2000, -10, function () {
+      MindStorms.motor('b', 2000, -15, function () {
       });
     });
 
@@ -53,7 +53,28 @@ module.exports = {
     });
   },
 
-  control: function(req, res) {
+  abeshi: function (res, res) {
+    res.isJson = true;
+    MindStorms.motor('c', 5000, -4);
+    MindStorms.motor('a', 500, 5, function () {
+      setTimeout(function () {
+        MindStorms.motor('b', 500, 10);
+        MindStorms.motor('a', 500, -10, function () {
+          setTimeout(function () {
+            MindStorms.motor('a', 2000, 10);
+            MindStorms.motor('b', 2000, -10);
+          }, 1500);
+        });
+      }, 500);
+    });
+
+    res.statusCode = 202;
+    res.send({
+      status: 202
+    });
+  },
+
+  control: function (req, res) {
     res.isJson = true;
 
     var correct_id = ['a', 'b', 'c', 'd'];
@@ -89,7 +110,7 @@ module.exports = {
       return;
     }
 
-    MindStorms.motor(motor_id, time, power, function() {
+    MindStorms.motor(motor_id, time, power, function () {
       console.log('process done');
     });
 

@@ -18,11 +18,12 @@ module.exports = {
   },
 
   motor: function(id, time, power, cb) {
-    cb();
 
     motor_output[id] = power;
     var output = target.getOutputSequence(motor_output["a"],motor_output["b"],motor_output["c"],motor_output["d"]);
-    target.sp.write(output,function(){});
+    target.sp.write(output,function(){
+      if (cb) cb();
+    });
     console.log(id + " motor output:" + motor_output[id] +"\n");
     console.log(motor_output);
 

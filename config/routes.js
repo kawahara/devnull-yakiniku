@@ -17,6 +17,10 @@ module.exports.routes = {
     'controller' : 'MotorController',
     'action': 'up_i'
   },
+  'POST /motor/abeshi' : {
+    'controller' : 'MotorController',
+    'action': 'abeshi'
+  },
   'POST /motor/:id' : {
     'controller' : 'MotorController',
     'action': 'control'
