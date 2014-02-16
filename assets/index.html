@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>R /dev/null</title>
+    <title>/dev/niku</title>
     <link href="styles/bootstrap.min.css" rel="stylesheet">
     <link href="styles/niku.css" rel="stylesheet">
   </head>
@@ -14,9 +14,16 @@
     </div>
     <div class="container" ng-controller="nikuCtrl">
       <div class="header">
-        <h3 class="text-muted">$ echo 'YAKINIKU' > /dev/null</h3>
+        <h3 class="text-muted">/dev/niku</h3>
       </div>
       <div class="jumbotron">
+        <div class="row">
+          <div class="col-md-4" ng-repeat="itemInfo in rItems.Items" ng-init="item = itemInfo.Item">
+            <a ng-href="{{ item.affiliateUrl }}" target="_blank">
+              <img ng-src="{{ item.mediumImageUrls[0].imageUrl }}" alt="{{ item.itemName }}">
+            </a>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-4">
             <button class="btn btn-lg btn-a" href="#" ng-click='control("a", -15)'>
@@ -36,7 +43,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <button class="btn btn-lg btn-b" href="#" ng-click='control("b", 15)'>
+            <button class="btn btn-lg btn-b" href="#" ng-click='control("b", 5, 500)'>
             　した
               <span class="glyphicon glyphicon-arrow-down"></span>
             </button>
@@ -79,15 +86,32 @@
             <strong class="role">U</strong>
           </div>
           <div class="col-md-4">
-            <button class="btn btn-lg btn-b" href="#">
+            <button class="btn btn-lg btn-b" href="#" ng-click="abeshi()">
               あべし
               <span class="glyphicon glyphicon-resize-small"></span>
             </button>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-md-4" ng-repeat="item in yItems">
+            <a ng-href="{{ item.Url }}" target="_blank">
+              <img ng-src="{{ item.Image.Medium }}" alt="{{ item.Name }}">
+            </a>
+          </div>
+        </div>
       </div>
       <div class="footer">
-        <p>&copy; R /dev/null</p>
+        <p>&copy; R /dev/null
+        <!-- Rakuten Web Services Attribution Snippet FROM HERE -->
+          <a href="http://webservice.rakuten.co.jp/" target="_blank"><img src="http://webservice.rakuten.co.jp/img/credit/200709/credit_22121.gif" border="0" alt="楽天ウェブサービスセンター" title="楽天ウェブサービスセンター" width="221" height="21"/></a>
+          <!-- Rakuten Web Services Attribution Snippet TO HERE -->
+          <!-- Begin Yahoo! JAPAN Web Services Attribution Snippet -->
+          <a href="http://developer.yahoo.co.jp/about">
+            <img src="http://i.yimg.jp/images/yjdn/yjdn_attbtn2_88_35.gif" width="88" height="35" title="Webサービス by Yahoo! JAPAN" alt="Webサービス by Yahoo! JAPAN" border="0" style="margin:15px 15px 15px 15px"></a>
+          <!-- End Yahoo! JAPAN Web Services Attribution Snippet -->
+
+        </p>
       </div>
     </div>
     <script src="js/angular.min.js"></script>
@@ -95,6 +119,21 @@
       var app = angular.module('devnullNiku', []);
       app.controller('nikuCtrl', ['$scope', '$http',
         function($scope, $http) {
+          var r = 1 + Math.floor(Math.random() * 50);
+          $http.get('https://app.rakuten.co.jp/services/api/IchibaItem/Search/20130805?format=json&keyword=%E7%84%BC%E3%81%8D%E8%82%89&sort=-reviewAverage&affiliateId=0dd78f8a.26c4c8c0.0dd78f8b.0ee811d2&applicationId=902d5c47048ba262bd4e471475ea8c8a&hits=3&imageFlag=1&page=' + r)
+            .success(function(res) {
+              $scope.rItems = res;
+            });
+
+          $http.jsonp('http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=u4iZ.xGxg67GYEQow5dHPofNzXowGDD61L2P22tDqaVysf98D_0km_qRkpZB1XOI5tC0&image_size=300&query=%E7%84%BC%E3%81%8D%E8%82%89&hits=3&callback=JSON_CALLBACK&offset=' + r)
+            .success(function(res) {
+              var tmpYItem = res.ResultSet[0].Result;
+              $scope.yItems = [];
+              for (var i = 0; i < 3; i++) {
+                $scope.yItems.push(tmpYItem[i]);
+              }
+            });
+
           $scope.up_i = function() {
             $http.post('/motor/up_i');
           };
@@ -109,7 +148,10 @@
               power: power,
               time: time
             });
-          }
+          };
+          $scope.abeshi = function() {
+            $http.post('/motor/abeshi');
+          };
         }
       ]);
     </script>
